@@ -13,7 +13,8 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'shmup/vim-sql-syntax'
-
+Plugin 'psf/black'
+Plugin 'tpope/vim-commentary'
 Plugin 'nvie/vim-flake8'
 let python_highlight_all=1
 syntax on
@@ -57,7 +58,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Enable folding
 set foldmethod=indent
-set foldlevel=99
+set foldlevel=110
 " Enable folding with the spacebar
 nnoremap <space> za
 
@@ -123,3 +124,4 @@ autocmd FileType python set foldmethod=indent
 
 "some togglables
 nnoremap <F5> :NERDTreeToggle<CR>
+nnoremap <F8> :Black<CR>
