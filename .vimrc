@@ -1,60 +1,61 @@
 set nocompatible              " required
 filetype off                  " required
 
-"------------Start Vundle stuff----------------
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+"------------Start vim-plug setup----------------
+call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+" Plugin manager itself (optional with vim-plug)
+Plug 'junegunn/vim-plug'
 
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'shmup/vim-sql-syntax'
-Plugin 'psf/black'
-Plugin 'tpope/vim-commentary'
-Plugin 'nvie/vim-flake8'
+" Python tools
+Plug 'tmhedberg/SimpylFold'
+Plug 'vim-scripts/indentpython.vim'
+Plug 'shmup/vim-sql-syntax'
+Plug 'tpope/vim-commentary'
+Plug 'shaoran/vim-ruff'
+
+let g:vimruff_default = "both"
 let python_highlight_all=1
 syntax on
 
-" Plugin 'jnurmine/Zenburn'
-Plugin 'altercation/vim-colors-solarized'
+" Colorschemes
+" Plug 'jnurmine/Zenburn'
+Plug 'altercation/vim-colors-solarized'
 
-Plugin 'scrooloose/nerdtree'
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+" File navigation
+Plug 'preservim/nerdtree'
+let NERDTreeIgnore=['\.pyc$', '\~$']
 
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'kien/ctrlp.vim'
 
-Bundle 'Valloric/YouCompleteMe'
+" Git integration
+Plug 'tpope/vim-fugitive'
+
+" Powerline
+Plug 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim/' }
+
+" Autocompletion
+Plug 'Valloric/YouCompleteMe'
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-Plugin 'derekwyatt/vim-scala'
+" Scala support
+Plug 'derekwyatt/vim-scala'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-"
-" Track the engine.
-Plugin 'SirVer/ultisnips'
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
-" Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
-
-" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
-" - https://github.com/Valloric/YouCompleteMe
-" - https://github.com/nvim-lua/completion-nvim
+" UltiSnips triggers
 let g:UltiSnipsExpandTrigger="<f2>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-"------------End Vundle stuff----------------
+
+call plug#end()
+filetype plugin indent on
+"------------End vim-plug setup----------------
+
 
 " Enable folding
 set foldmethod=indent
@@ -124,4 +125,4 @@ autocmd FileType python set foldmethod=indent
 
 "some togglables
 nnoremap <F5> :NERDTreeToggle<CR>
-nnoremap <F8> :Black<CR>
+nnoremap <F8> :Ruff<CR>
