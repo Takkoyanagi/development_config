@@ -100,7 +100,7 @@ au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " Wrap text after a certain number of characters
-au BufRead,BufNewFile *.py,*.pyw, set textwidth=79
+au BufRead,BufNewFile *.py,*.pyw, set textwidth=160
 
 " Use UNIX (\n) line endings.
 au BufNewFile *.py,*.pyw,*.c,*.h set fileformat=unix
@@ -125,4 +125,5 @@ autocmd FileType python set foldmethod=indent
 
 "some togglables
 nnoremap <F5> :NERDTreeToggle<CR>
+nnoremap <F7> :!ruff check %<CR>
 nnoremap <F8> :Ruff<CR>
